@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JobTracker5.Repositories;
+
 
 namespace JobTracker5
 {
@@ -32,6 +33,7 @@ namespace JobTracker5
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
 
+
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
             services
@@ -48,6 +50,7 @@ namespace JobTracker5
                         ValidateLifetime = true
                     };
                 });
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
