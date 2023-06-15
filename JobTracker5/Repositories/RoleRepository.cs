@@ -106,7 +106,7 @@ namespace JobTracker5.Repositories
                                 IsRejected = reader.GetString(reader.GetOrdinal("IsRejected")),
                                 IsAccepted = reader.GetString(reader.GetOrdinal("IsAccepted")),
                                 GotInterview = reader.GetString(reader.GetOrdinal("GotInterview")),
-                                JobTypeId = reader.GetInt32(reader.GetOrdinal("JobTypeId")),
+                                ExperienceLevelId = reader.GetInt32(reader.GetOrdinal("ExperienceLevelId")),
                                 ExperienceLevel = new ExperienceLevel()
                                 {
                                     Id = reader.GetInt32(reader.GetOrdinal("ExperienceLevelId")),

@@ -49,9 +49,15 @@ namespace JobTracker5.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, Role role)
         {
+
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userProfile = _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
+
+            role.UserProfileId = userProfile.Id;
+
             if (id != role.Id)
             {
                 return BadRequest();
