@@ -1,7 +1,9 @@
 ﻿using JobTracker5.Models;
 using JobTracker5.Repositories;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JobTracker5.Controllers
 {
@@ -38,10 +40,10 @@ namespace JobTracker5.Controllers
         [HttpPost]
         public IActionResult Post(Role role)
         {
-            //var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //var userProfile = _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userProfile = _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
 
-            //role.UserProfileId = userProfile.Id;
+            role.UserProfileId = userProfile.Id;
             _roleRepo.AddRole(role);
             return CreatedAtAction("Get", new { id = role.Id }, role);
         }
