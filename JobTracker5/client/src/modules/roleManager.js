@@ -66,6 +66,35 @@ export const getRoleById = (id) => {
       });
 };
 
+export const editRole = (id, role) => {
+  return getToken().then((token) => {
+      return fetch(`${baseUrl}/${id}`, {
+          method: "PUT",
+          headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(role)
+      })
+          .then((resp) => {
+            if (!resp.ok) {
+              throw new Error(
+                "An unknown error occurred while trying to put post.",
+              );
+            }
+              // if (resp.ok) {
+              //     return resp.json();
+              // } else if (resp.status === 401) {
+              //     throw new Error("Unauthorized");
+              // } else {
+              //     throw new Error(
+              //         "An unknown error occurred while trying to put post.",
+              //     );
+              // }
+          });
+  });
+}
+
 export const getAllExpLevels = () => {
   return getToken().then((token) => {
       return fetch(expLevelUrl, {

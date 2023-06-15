@@ -23,6 +23,9 @@ const Role = ({ role }) => {
                         <li><b>JobType:</b> {role?.jobType?.name}</li>
                         <li><b>Job Site:</b> {role?.jobSite?.name}</li>
                     </ul>
+                    </div>
+                    <div> 
+                        <button class="btn_edit" onClick={() => navigate(`/roles/${role.id}/edit`)}>Edit Role</button>
                     </div>   
                 </section>
             </CardBody>
