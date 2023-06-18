@@ -26,7 +26,7 @@ const RoleEdit = () => {
 
     useEffect(() => {
         getRoleById(id).then(updateRole)
-    }, [])
+    }, [id])
 
     const [expLevels, setExpLevels] = useState([])
 

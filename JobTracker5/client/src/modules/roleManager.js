@@ -75,25 +75,33 @@ export const editRole = (id, role) => {
               "Content-Type": "application/json",
           },
           body: JSON.stringify(role)
-      })
+    })
           .then((resp) => {
             if (!resp.ok) {
               throw new Error(
                 "An unknown error occurred while trying to put post.",
-              );
-            }
-              // if (resp.ok) {
-              //     return resp.json();
-              // } else if (resp.status === 401) {
-              //     throw new Error("Unauthorized");
-              // } else {
-              //     throw new Error(
-              //         "An unknown error occurred while trying to put post.",
-              //     );
-              // }
-          });
+        );
+      }
+    });
   });
 }
+
+export const deleteRole = (id) => {
+  return getToken().then((token) => {
+    return fetch(`${baseUrl}/${id}`, {
+      method: "Delete",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((resp) => {
+      if (!resp.ok) {
+        throw new Error(
+          "An unknown error occurred while trying to get delete food"
+        );
+      }
+    });
+  });
+};
 
 export const getAllExpLevels = () => {
   return getToken().then((token) => {
