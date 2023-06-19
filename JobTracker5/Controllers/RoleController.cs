@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace JobTracker5.Controllers
 {
@@ -37,13 +38,20 @@ namespace JobTracker5.Controllers
             return Ok(role);
         }
 
+        [HttpGet("User")]
+        public IActionResult GetByCurrentUser()
+        {
+            var currentUser = GetCurrentUserProfile();
+
+            return Ok(_roleRepo.GetRolesByUserProfileId(currentUser.Id));
+        }
+
         [HttpPost]
         public IActionResult Post(Role role)
         {
-            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var userProfile = _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
+            var currentUserProfile = GetCurrentUserProfile();
 
-            role.UserProfileId = userProfile.Id;
+            role.UserProfileId = currentUserProfile.Id;
             _roleRepo.AddRole(role);
             return CreatedAtAction("Get", new { id = role.Id }, role);
         }
@@ -53,10 +61,9 @@ namespace JobTracker5.Controllers
         public IActionResult Put(int id, Role role)
         {
 
-            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var userProfile = _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
+            var currentUserProfile = GetCurrentUserProfile();
 
-            role.UserProfileId = userProfile.Id;
+            role.UserProfileId = currentUserProfile.Id;
 
             if (id != role.Id)
             {
@@ -92,6 +99,12 @@ namespace JobTracker5.Controllers
         public IActionResult GetJobSites()
         {
             return Ok(_roleRepo.GetAllJobSites());
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }

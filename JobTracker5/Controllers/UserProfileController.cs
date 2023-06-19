@@ -16,6 +16,12 @@ namespace JobTracker5.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
+        [HttpGet] 
+        public IActionResult Get()
+        {
+            return Ok(_userProfileRepository.GetAll());
+        }
+
         [HttpGet("{firebaseUserId}")]
         public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
