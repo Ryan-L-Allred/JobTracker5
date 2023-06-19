@@ -6,6 +6,7 @@ import RoleList from "./RoleList";
 import RoleDetails from "./RoleDetails";
 import RoleForm from "./RoleForm";
 import RoleEdit from "./RoleEdit";
+import UserRoles from "./UserRoles";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -13,7 +14,7 @@ export default function ApplicationViews({ isLoggedIn }) {
       <Routes>
         <Route path="/">
           <Route path="roles">
-            <Route index element={<RoleList/>} />
+            <Route index element={<UserRoles/>} />
             <Route path=":id" element={<RoleDetails/>} />
             <Route path="add" element={<RoleForm/>} />
             <Route path=":id/edit" element={<RoleEdit/>} /> 

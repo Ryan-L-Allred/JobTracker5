@@ -1,11 +1,51 @@
 ﻿using JobTracker5.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace JobTracker5.Repositories
 {
     public class UserProfileRepository : BaseRepository, IUserProfileRepository
     {
         public UserProfileRepository(IConfiguration configuration) : base(configuration) { }
+
+        public List<UserProfile> GetAll()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using(var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT up.Id, up.Name, up.Email, up.FirebaseUserId, up.UserTypeId,
+                               ut.Id as UserTypeId, ut.Name as UserTypeName
+                        FROM UserProfile up
+                        JOIN UserType ut ON up.UserTypeId = ut.Id";
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var userProfiles = new List<UserProfile>();
+                        while (reader.Read())
+                        {
+                            var userProfile = new UserProfile()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                FirebaseUserId = reader.GetString(reader.GetOrdinal("FirebaseUserId")),
+                                UserTypeId = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                UserType = new UserType()
+                                {
+                                    Name= reader.GetString(reader.GetOrdinal("Name"))
+                                }
+                            };
+                            userProfiles.Add(userProfile);
+                        }
+                        return userProfiles;
+                    }
+                }
+            }
+        }
 
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
         {

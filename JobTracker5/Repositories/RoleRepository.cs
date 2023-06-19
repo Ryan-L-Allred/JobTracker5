@@ -133,6 +133,79 @@ namespace JobTracker5.Repositories
             }
         }
 
+        public List<Role> GetRolesByUserProfileId(int userProfileId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                          SELECT r.Id, r.Title, r.Company, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
+	                             el.Name as ExperienceLevelName,
+                                 jt.Name as JobTypeName,
+	                             js.Name as JobSiteName,
+                                 up.Id, up.Name, up.Email, up.FirebaseUserId, up.UserTypeId
+                            FROM Role r
+                            JOIN ExperienceLevel el ON r.ExperienceLevelId = el.Id
+                            JOIN JobType jt ON r.JobTypeId = jt.Id
+                            JOIN JobSite js ON r.JobSiteId = js.Id
+                            JOIN UserProfile up On r.UserProfileId = up.Id
+                           WHERE r.UserProfileId = @userProfileId";
+
+                    cmd.Parameters.AddWithValue("@userProfileId", userProfileId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        var roles = new List<Role>();
+                        while (reader.Read())
+                        {
+                            var role = new Role()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Title = reader.GetString(reader.GetOrdinal("Title")),
+                                Company = reader.GetString(reader.GetOrdinal("Company")),
+                                Location = reader.GetString(reader.GetOrdinal("Location")),
+                                Skills = reader.GetString(reader.GetOrdinal("Skills")),
+                                IsRejected = reader.GetString(reader.GetOrdinal("IsRejected")),
+                                IsAccepted = reader.GetString(reader.GetOrdinal("IsAccepted")),
+                                GotInterview = reader.GetString(reader.GetOrdinal("GotInterview")),
+                                ExperienceLevelId = reader.GetInt32(reader.GetOrdinal("ExperienceLevelId")),
+                                ExperienceLevel = new ExperienceLevel()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("ExperienceLevelId")),
+                                    Name = reader.GetString(reader.GetOrdinal("ExperienceLevelName"))
+                                },
+                                JobTypeId = reader.GetInt32(reader.GetOrdinal("JobTypeId")),
+                                JobType = new JobType()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("JobTypeId")),
+                                    Name = reader.GetString(reader.GetOrdinal("JobTypeName"))
+                                },
+                                JobSiteId = reader.GetInt32(reader.GetOrdinal("JobSiteId")),
+                                JobSite = new JobSite()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("JobSiteId")),
+                                    Name = reader.GetString(reader.GetOrdinal("JobSiteName"))
+                                },
+                                UserProfileId = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                                UserProfile = new UserProfile()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("UserProfileId")),
+                                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                                    Email = reader.GetString(reader.GetOrdinal("Email")),
+                                    FirebaseUserId = reader.GetString(reader.GetOrdinal("FirebaseUserId")),
+                                    UserTypeId = reader.GetInt32(reader.GetOrdinal("JobTypeId"))
+                                }
+                            };
+                            roles.Add(role);
+                        }
+                        return roles;
+                    }
+                }
+            }
+        }
+
         public void AddRole(Role role)
         {
             using (var conn = Connection)

@@ -7,6 +7,7 @@ namespace JobTracker5.Repositories
     {
         List<Role> GetAllRoles();
         Role GetRoleById(int id);
+        List<Role> GetRolesByUserProfileId(int userProfileId);
         void AddRole(Role role);
         void UpdateRole(Role role);
         void DeleteRole(int id);
