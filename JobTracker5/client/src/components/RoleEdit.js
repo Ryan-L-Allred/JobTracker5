@@ -131,7 +131,7 @@ const RoleEdit = () => {
             onChange={
               (evt) => {
                 const copy = { ...roleSelect }
-                copy.expLevelId = evt.target.value
+                copy.experienceLevelId = evt.target.value
                 updateRole(copy)
               }}
             >

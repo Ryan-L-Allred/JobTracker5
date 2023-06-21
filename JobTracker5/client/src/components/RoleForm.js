@@ -74,114 +74,108 @@ const RoleForm = ({ getRoles }) => {
         <Form>
       <FormGroup>
         <div class="Title" for="title">Title</div>
-        <Input type="text" name="title" id="title" placeholder="Title"
+        <Input type="text" name="title" id="title" placeholder="e.g. Software Engineer, Data Analyst, etc."
           value={role.title}
           onChange={handleInputChange} />
       </FormGroup>
       <FormGroup>
-        <div class="company" for="company">company</div>
-        <Input type="text" name="company" id="company" placeholder="company"
+        <div class="company" for="company">Company</div>
+        <Input type="text" name="company" id="company" placeholder="e.g. Apple, Taco Bell, etc."
           value={role.company}
           onChange={handleInputChange} />
       </FormGroup>
        <FormGroup>
         <div class="Location" for="location">Location</div>
-        <Input type="text" name="location" id="location" placeholder="location"
+        <Input type="text" name="location" id="location" placeholder="e.g. Nashville, Culleoka, etc. "
           value={role.location}
           onChange={handleInputChange} />
       </FormGroup> 
       <FormGroup>
-        <div class="skills" for="skills">skills</div>
-        <Input type="text" name="skills" id="skills" placeholder="skills"
+        <div class="skills" for="skills">Skills</div>
+        <Input type="text" name="skills" id="skills" placeholder="e.g. C#, Python, React, etc."
           value={role.skills}
           onChange={handleInputChange} />
       </FormGroup>
       <FormGroup>
-        <div class="isRejected" for="isRejected">Rejected</div>
-        <Input type="text" name="isRejected" id="isRejected" placeholder="isRejected"
+        <div class="isRejected" for="isRejected">Rejection Status</div>
+        <Input type="text" name="isRejected" id="isRejected" placeholder="Yes/No"
           value={role.isRejected}
           onChange={handleInputChange} />
       </FormGroup>
       <FormGroup>
-        <div class="isAccepted" for="isAccepted">Accepted</div>
-        <Input type="text" name="isAccepted" id="isAccepted" placeholder="isAccepted"
+        <div class="isAccepted" for="isAccepted">Acceptance Status</div>
+        <Input type="text" name="isAccepted" id="isAccepted" placeholder="Yes/No"
           value={role.isAccepted}
           onChange={handleInputChange} />
       </FormGroup>
       <FormGroup>
-        <div class="gotInterview" for="gotInterview">Interview</div>
-        <Input type="text" name="gotInterview" id="gotInterview" placeholder="gotInterview"
+        <div class="gotInterview" for="gotInterview">Interview Status</div>
+        <Input type="text" name="gotInterview" id="gotInterview" placeholder="e.g. 1st Round, No Response, etc."
           value={role.gotInterview}
           onChange={handleInputChange} />
       </FormGroup>
       <FormGroup>
         <div for="expLevel">Experience Level</div>
-        <select
-            className="expLevel-box"
-            id="expLevel-select"
+        {expLevels.map((expLevel) => {
+          return (
+            <div key={expLevel.id} className="radio">
+            <input
+            type="radio"
+            value={expLevel.id}
+            checked={role.experienceLevelId === expLevel.id}
             onChange={
               (evt) => {
                 const copy = { ...role }
-                copy.expLevelId = evt.target.value
+                copy.experienceLevelId = parseInt(evt.target.value)
                 setRole(copy)
               }}
-            >
-            <option value="0">Select One</option>
-            {expLevels.map((expLevel) => {
-              return (
-                <option key={expLevel.id}
-                        value={expLevel.id}>
-                        {expLevel.name}
-                        </option>
-              )
-            })}
-        </select>
+            />
+            {expLevel.name}
+            </div>
+          )
+        })}
       </FormGroup>
       <FormGroup>
         <div for="jobType">Job Type</div>
-        <select
-            className="jobType-box"
-            id="jobType-select"
-            onChange={
-              (evt) => {
-                const copy = { ...role }
-                copy.jobTypeId = evt.target.value
-                setRole(copy)
-              }}
-            >
-            <option value="0">Select One</option>
-            {jobTypes.map((jobType) => {
-              return (
-                <option key={jobType.id}
-                        value={jobType.id}>
-                        {jobType.name}
-                        </option>
-              )
-            })}
-        </select>
+        {jobTypes.map((jobType) => {
+          return (
+            <div key={jobType.id} className="radio">
+              <input
+              type="radio"
+              value={jobType.id}
+              checked={role.jobTypeId === jobType.id}
+              onChange={
+                (evt) => {
+                  const copy = { ...role }
+                  copy.jobTypeId = parseInt(evt.target.value)
+                  setRole(copy)
+                }}
+              />
+              {jobType.name}
+             </div>
+          )
+        })}
       </FormGroup>
       <FormGroup>
         <div for="jobSite">Job Site</div>
-        <select
-            className="jobSite-box"
-            id="jobSite-select"
-            onChange={
-              (evt) => {
-                const copy = { ...role }
-                copy.jobSiteId = evt.target.value
-                setRole(copy)
-              }}
-            >
-            <option value="0">Select One</option>
-            {jobSites.map((jobSite) => {
-              return (
-                <option key={jobSite.id}
-                        value={jobSite.id}>
-                        {jobSite.name}
-                        </option>
-              )
-            })}
-        </select>
+        {jobSites.map((jobSite) => {
+          return (
+            <div key={jobSite.id} className="radio">
+              <input
+              type="radio"
+              value={jobSite.id}
+              checked={role.jobSiteId === jobSite.id}
+              onChange={
+                (evt) => {
+                  const copy = { ...role }
+                  copy.jobSiteId = parseInt(evt.target.value)
+                  setRole(copy)
+                }}
+              />
+              {jobSite.name}
+             </div>
+          )
+        })}
       </FormGroup>
       <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
     </Form>
