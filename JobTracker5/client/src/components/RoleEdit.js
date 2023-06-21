@@ -125,72 +125,66 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div for="expLevel">Experience Level</div>
-        <select
-            className="expLevel-box"
-            id="expLevel-select"
+        {expLevels.map((expLevel) => {
+          return (
+            <div key={expLevel.id} className="radio">
+            <input
+            type="radio"
+            value={expLevel.id}
+            checked={roleSelect.experienceLevelId === expLevel.id}
             onChange={
               (evt) => {
                 const copy = { ...roleSelect }
-                copy.experienceLevelId = evt.target.value
+                copy.experienceLevelId = parseInt(evt.target.value)
                 updateRole(copy)
               }}
-            >
-            <option value="0">Select One</option>
-            {expLevels.map((expLevel) => {
-              return (
-                <option key={expLevel.id}
-                        value={expLevel.id}>
-                        {expLevel.name}
-                        </option>
-              )
-            })}
-        </select>
+            />
+            {expLevel.name}
+            </div>
+          )
+        })}
       </FormGroup>
       <FormGroup>
         <div for="jobType">Job Type</div>
-        <select
-            className="jobType-box"
-            id="jobType-select"
-            onChange={
-              (evt) => {
-                const copy = { ...roleSelect }
-                copy.jobTypeId = evt.target.value
-                updateRole(copy)
-              }}
-            >
-            <option value="0">Select One</option>
-            {jobTypes.map((jobType) => {
-              return (
-                <option key={jobType.id}
-                        value={jobType.id}>
-                        {jobType.name}
-                        </option>
-              )
-            })}
-        </select>
+        {jobTypes.map((jobType) => {
+          return (
+            <div key={jobType.id} className="radio">
+              <input
+              type="radio"
+              value={jobType.id}
+              checked={roleSelect.jobTypeId === jobType.id}
+              onChange={
+                (evt) => {
+                  const copy = { ...roleSelect }
+                  copy.jobTypeId = parseInt(evt.target.value)
+                  updateRole(copy)
+                }}
+              />
+              {jobType.name}
+             </div>
+          )
+        })}
       </FormGroup>
       <FormGroup>
         <div for="jobSite">Job Site</div>
-        <select
-            className="jobSite-box"
-            id="jobSite-select"
-            onChange={
-              (evt) => {
-                const copy = { ...roleSelect }
-                copy.jobSiteId = evt.target.value
-                updateRole(copy)
-              }}
-            >
-            <option value="0">Select One</option>
-            {jobSites.map((jobSite) => {
-              return (
-                <option key={jobSite.id}
-                        value={jobSite.id}>
-                        {jobSite.name}
-                        </option>
-              )
-            })}
-        </select>
+        {jobSites.map((jobSite) => {
+          return (
+            <div key={jobSite.id} className="radio">
+              <input
+              type="radio"
+              value={jobSite.id}
+              checked={roleSelect.jobSiteId === jobSite.id}
+              onChange={
+                (evt) => {
+                  const copy = { ...roleSelect }
+                  copy.jobSiteId = parseInt(evt.target.value)
+                  updateRole(copy)
+                }}
+              />
+              {jobSite.name}
+             </div>
+          )
+        })}
       </FormGroup>
       <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
     </Form>
