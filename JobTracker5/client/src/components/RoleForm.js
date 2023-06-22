@@ -178,6 +178,7 @@ const RoleForm = ({ getRoles }) => {
         })}
       </FormGroup>
       <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
+      <Button className="btn btn-primary" onClick={() => navigate("/roles")}>Cancel</Button>
     </Form>
   )
 }
