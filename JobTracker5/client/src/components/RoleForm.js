@@ -71,7 +71,7 @@ const RoleForm = ({ getRoles }) => {
     }
 
     return (
-        <Form>
+        <form class="container">
       <FormGroup>
         <div class="Title" for="title">Title</div>
         <Input type="text" name="title" id="title" placeholder="e.g. Software Engineer, Data Analyst, etc."
@@ -118,6 +118,7 @@ const RoleForm = ({ getRoles }) => {
         <div for="expLevel">Experience Level</div>
         {expLevels.map((expLevel) => {
           return (
+          <div>
             <div key={expLevel.id} className="radio">
             <input
             type="radio"
@@ -131,6 +132,7 @@ const RoleForm = ({ getRoles }) => {
               }}
             />
             {expLevel.name}
+            </div>
             </div>
           )
         })}
@@ -177,9 +179,11 @@ const RoleForm = ({ getRoles }) => {
           )
         })}
       </FormGroup>
-      <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
-      <Button className="btn btn-primary" onClick={() => navigate("/roles")}>Cancel</Button>
-    </Form>
+      <div class="m-4">
+      <a type="button" className="btn btn-success" onClick={handleSave}>Submit</a>
+      <a type="button" className="btn btn-success" onClick={() => navigate("/roles")}>Cancel</a>
+      </div>
+    </form>
   )
 }
 

@@ -1,8 +1,7 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-import RoleList from "./RoleList";
 import RoleDetails from "./RoleDetails";
 import RoleForm from "./RoleForm";
 import RoleEdit from "./RoleEdit";
@@ -12,7 +11,15 @@ export default function ApplicationViews({ isLoggedIn }) {
   return (
     <main>
       <Routes>
-        <Route path="/">
+        <Route path="" element={
+          <>
+            <h1 className="title">Welcome to Job Tracker!</h1>
+            
+          </>
+        }>
+
+        </Route>
+        <Route path="/" >
           <Route path="roles">
             <Route index element={<UserRoles/>} />
             <Route path=":id" element={<RoleDetails/>} />
