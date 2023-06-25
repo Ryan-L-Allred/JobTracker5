@@ -186,8 +186,10 @@ const RoleEdit = () => {
           )
         })}
       </FormGroup>
-      <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
-      <Button className="btn btn-primary" onClick={() => navigate(`/roles/${roleSelect.id}`)}>Cancel</Button>
+    <div class="m-4">
+      <a type="button" className="btn btn-primary" onClick={handleSave}>Submit</a>
+      <a type="button" className="btn btn-primary" onClick={() => navigate(`/roles/${roleSelect.id}`)}>Cancel</a>
+      </div>
     </Form>
   )
 }

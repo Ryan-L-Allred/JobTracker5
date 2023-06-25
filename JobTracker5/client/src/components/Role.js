@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Button } from "reactstrap";
 import { Navigate, useNavigate } from "react-router-dom"
 import { getAllRoles, deleteRole } from "../modules/roleManager";
 
@@ -31,9 +31,10 @@ const Role = ({ role }) => {
                     </ul>
                     </div>
                     <div> 
-                        <button class="btn_edit" onClick={() => navigate(`/roles/${role.id}/edit`)}>Edit Role</button>
-                        <button class="btn_delete"  onClick={confirmDelete}>Delete Role</button>
-                    </div>   
+                        <a type="button" class="btn btn-primary" onClick={() => navigate(`/roles/${role.id}/edit`)}>Edit Role</a>
+                        <a type="button" class="btn btn-primary"  onClick={confirmDelete}>Delete Role</a>
+                    </div>
+                       
                 </section>
             </CardBody>
         </Card>

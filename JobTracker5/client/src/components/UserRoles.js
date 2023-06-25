@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getRolesByUserProfileId } from "../modules/roleManager";
+import { Button } from 'reactstrap' 
 
 const UserRoles = () => {
     const [roles, setRoles] = useState([])
@@ -17,19 +18,27 @@ const UserRoles = () => {
     const navigate = useNavigate()
 
     return (
-        <section>
+        <section class="container" >
             <h2>Roles Applied</h2>
-                <div class="col-md-12 text-center">
-                    <button class="btn-xl" onClick={() => navigate("/roles/add")}>Add Role </button>
+                <div >
+                    <a type="button" class="btn btn-success" onClick={() => navigate("/roles/add")}>Add Role </a>
                 </div>
             {roles.map(role => (
-                <section key={role.id} class="text-center">
+                <section key={role.id} >
                     <Link to={`/roles/${role.id}`}>
-                    <div class="roleList"><b>Title:</b> {role.title}, <b>Company:</b> {role.company}</div>
+                    <div class="row">
+                        <div class="col">
+                        <b>Title:</b> {role.title}
+                        </div> 
+                        <div class= "col">
+                            <b>Company:</b> {role.company}
+                        </div>
+                    </div>
                     </Link>
                 </section>
             ))}
         </section>
+        
     );
 }
 
