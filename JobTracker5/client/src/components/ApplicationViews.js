@@ -11,20 +11,20 @@ export default function ApplicationViews({ isLoggedIn }) {
   return (
     <main>
       <Routes>
-        <Route path="" element={
-          <>
-            <h1 className="title">Welcome to Job Tracker!</h1>
-            
-          </>
-        }>
-
-        </Route>
-        <Route path="/" >
+        <Route
+          path=""
+          element={
+            <>
+              <h1 className="title">Welcome to Job Tracker!</h1>
+            </>
+          }
+        ></Route>
+        <Route path="/">
           <Route path="roles">
-            <Route index element={<UserRoles/>} />
-            <Route path=":id" element={<RoleDetails/>} />
-            <Route path="add" element={<RoleForm/>} />
-            <Route path=":id/edit" element={<RoleEdit/>} /> 
+            <Route index element={<UserRoles />} />
+            <Route path=":id" element={<RoleDetails />} />
+            <Route path="add" element={<RoleForm />} />
+            <Route path=":id/edit" element={<RoleEdit />} />
           </Route>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -33,4 +33,4 @@ export default function ApplicationViews({ isLoggedIn }) {
       </Routes>
     </main>
   );
-};
+}
