@@ -19,28 +19,43 @@ const UserRoles = () => {
 
   return (
     <section class="container">
-      <h2>Roles Applied</h2>
-      <div>
+      <h2 class="text-center">Roles Applied</h2>
+      <div class="text-center">
         <a
           type="button"
           class="btn btn-success"
           onClick={() => navigate("/roles/add")}
         >
-          Add Role{" "}
+          Add Role
         </a>
       </div>
       {roles.map((role) => (
         <section key={role.id}>
-          <Link to={`/roles/${role.id}`}>
             <div class="row">
-              <div class="col">
-                <b>Title:</b> {role.title}
-              </div>
-              <div class="col">
-                <b>Company:</b> {role.company}
-              </div>
+              <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{role.title}</td>
+                  <td>{role.company}</td>
+                  <td>{role.location}</td>
+                  <td>
+                    <a type="button"
+                       class="btn btn-success"
+                       onClick={() => navigate(`/roles/${role.id}`)}>
+                        Details
+                       </a>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
             </div>
-          </Link>
         </section>
       ))}
     </section>
