@@ -239,20 +239,20 @@ const RoleEdit = () => {
           </div>
         </div>
       </fieldset>
-      <div class="row">
-        <div class="col">
+      <div class="text-center my-3">
+        <div>
           <a type="button" className="btn btn-primary" onClick={handleSave}>
             Submit
           </a>
-        </div>
-        <div class="col">
+          </div>
+          <div>
           <a
             type="button"
-            className="btn btn-primary"
-            onClick={() => navigate("/roles")}>
+            className="btn btn-primary my-1"
+            onClick={() => navigate(`/roles/${roleSelect.id}`)}>
             Cancel
           </a>
-        </div>
+          </div>
       </div>
     </form>
   );
