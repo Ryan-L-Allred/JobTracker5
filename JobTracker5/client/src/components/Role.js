@@ -49,7 +49,7 @@ const Role = ({ role }) => {
           <b>Job Site:</b> {role?.jobSite?.name}
         </div>
       </div>
-      <div class="row">
+      <div class="text-center my-2">
         <div class="col">
           <a
             type="button"
@@ -59,7 +59,7 @@ const Role = ({ role }) => {
             Edit Role
           </a>
         </div>
-        <div class="col">
+        <div class="col my-1">
           <a type="button" class="btn btn-primary" onClick={confirmDelete}>
             Delete Role
           </a>
