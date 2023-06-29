@@ -15,7 +15,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           path=""
           element={
             <>
-              <h1 className="title">Welcome to Job Tracker!</h1>
+              <h1 className="title text-secondary">Welcome to Job Tracker!</h1>
             </>
           }
         ></Route>

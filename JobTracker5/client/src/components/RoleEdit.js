@@ -76,7 +76,7 @@ const RoleEdit = () => {
       gotInterview: roleSelect.gotInterview,
       experienceLevelId: roleSelect.experienceLevelId,
       jobTypeId: roleSelect.jobTypeId,
-      jobSiteId: roleSelect.jobSiteId
+      jobSiteId: roleSelect.jobSiteId,
     };
 
     return editRole(roleSelect.id, roleToSendToAPI).then(() => {
@@ -85,10 +85,11 @@ const RoleEdit = () => {
   };
 
   return (
-    <form class="container">
+    <section class="bg-light">
+    <form class="container text-secondary">
       <FormGroup>
         <div class="Title" for="title">
-          Title
+          <b>Title</b>
         </div>
         <Input
           type="text"
@@ -101,7 +102,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="company" for="company">
-          Company
+          <b>Company</b>
         </div>
         <Input
           type="text"
@@ -114,7 +115,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="salary" for="salary">
-         Salary
+          <b>Salary</b>
         </div>
         <Input
           type="text"
@@ -127,7 +128,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="Location" for="location">
-          Location
+          <b>Location</b>
         </div>
         <Input
           type="text"
@@ -140,7 +141,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="skills" for="skills">
-          Skills
+          <b>Skills</b>
         </div>
         <Input
           type="text"
@@ -153,7 +154,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="isRejected" for="isRejected">
-          Rejected
+          <b>Rejected</b>
         </div>
         <Input
           type="text"
@@ -166,7 +167,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="isAccepted" for="isAccepted">
-          Accepted
+          <b>Accepted</b>
         </div>
         <Input
           type="text"
@@ -179,7 +180,7 @@ const RoleEdit = () => {
       </FormGroup>
       <FormGroup>
         <div class="gotInterview" for="gotInterview">
-          Interview
+          <b>Interview</b>
         </div>
         <Input
           type="text"
@@ -214,23 +215,24 @@ const RoleEdit = () => {
           </div>
           <div for="jobType" class="col">
             <b>Job Type</b>
-          
-          {jobTypes.map((jobType) => {
-            return (
-              <div key={jobType.id} className="radio">
-                <input
-                type="radio"
-                value={jobType.id}
-                checked={roleSelect.jobTypeId === jobType.id}
-                onChange={(evt) => {
-                  const copy = { ...roleSelect }
-                  copy.jobTypeId = parseInt(evt.target.value)
-                  updateRole(copy)
-                }}/>
-                {jobType.name}
-              </div>
-            )
-          })}
+
+            {jobTypes.map((jobType) => {
+              return (
+                <div key={jobType.id} className="radio">
+                  <input
+                    type="radio"
+                    value={jobType.id}
+                    checked={roleSelect.jobTypeId === jobType.id}
+                    onChange={(evt) => {
+                      const copy = { ...roleSelect };
+                      copy.jobTypeId = parseInt(evt.target.value);
+                      updateRole(copy);
+                    }}
+                  />
+                  {jobType.name}
+                </div>
+              );
+            })}
           </div>
           <div for="jobSite" class="col">
             <b>Job Site</b>
@@ -256,20 +258,21 @@ const RoleEdit = () => {
       </fieldset>
       <div class="text-center my-3">
         <div>
-          <a type="button" className="btn btn-primary" onClick={handleSave}>
+          <a type="button" className="btn btn-secondary" onClick={handleSave}>
             Submit
           </a>
-          </div>
-          <div>
           <a
             type="button"
-            className="btn btn-primary my-1"
-            onClick={() => navigate(`/roles/${roleSelect.id}`)}>
+            className="btn btn-secondary my-1"
+            onClick={() => navigate(`/roles/${roleSelect.id}`)}
+          >
             Cancel
           </a>
-          </div>
+        </div>
+        <div></div>
       </div>
     </form>
+    </section>
   );
 };
 
