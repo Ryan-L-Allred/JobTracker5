@@ -15,10 +15,13 @@ const Role = ({ role }) => {
 
   return (
     <section class="container">
-      <h3 class="text-center">{role.title}</h3>
-      <div class="row">
+      <h3 class="text-center my-4">{role.title}</h3>
+      <div class="row my-4">
         <div class="col">
           <b>Company:</b> {role.company}
+        </div>
+        <div class="col">
+          <b>Salary:</b> {role.salary}
         </div>
         <div class="col">
           <b>Location:</b> {role.location}
@@ -26,19 +29,17 @@ const Role = ({ role }) => {
         <div class="col">
           <b>Skills:</b> {role.skills}
         </div>
-      </div>
-      <div class="row">
         <div class="col">
           <b>Rejected:</b> {role.isRejected}
         </div>
+      </div>
+      <div class="row">
         <div class="col">
           <b>Accepted:</b> {role.isAccepted}
         </div>
         <div class="col">
           <b>Interview:</b> {role.gotInterview}
         </div>
-      </div>
-      <div class="row">
         <div class="col">
           <b>Experience Level:</b> {role?.experienceLevel?.name}
         </div>
@@ -49,8 +50,8 @@ const Role = ({ role }) => {
           <b>Job Site:</b> {role?.jobSite?.name}
         </div>
       </div>
-      <div class="text-center my-2">
-        <div class="col">
+      <div class="text-center my-4">
+        <div class="col my-4">
           <a
             type="button"
             class="btn btn-primary"

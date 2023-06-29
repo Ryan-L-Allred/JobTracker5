@@ -13,6 +13,7 @@ const RoleForm = ({ getRoles }) => {
   const emptyRole = {
     title: "",
     company: "",
+    salary: "",
     location: "",
     skills: "",
     isRejected: "",
@@ -99,6 +100,19 @@ const RoleForm = ({ getRoles }) => {
           id="company"
           placeholder="e.g. Apple, Taco Bell, etc."
           value={role.company}
+          onChange={handleInputChange}
+        />
+      </FormGroup>
+      <FormGroup>
+        <div class="salary" for="salary">
+          <b>Salary</b>
+        </div>
+        <Input
+          type="text"
+          name="salary"
+          id="salary"
+          placeholder="e.g. $2/hr, $50,000/week, etc."
+          value={role.salary}
           onChange={handleInputChange}
         />
       </FormGroup>
