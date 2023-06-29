@@ -20,12 +20,18 @@ const UserRoles = () => {
 
   return (
     
-    <section >
-      <h2 class="text-center">Roles Applied</h2>
+    <section class="bg-light" >
+      <h2 class="text-center text-secondary">Roles Applied</h2>
       <div class="text-center ">
+        {/* <button
+          class="btn_add"
+          onClick={() => navigate("/roles/add")}
+        >
+          Add Role
+        </button> */}
         <a
           type="button"
-          class="btn"
+          class="btn btn-secondary"
           onClick={() => navigate("/roles/add")}
         >
           Add Role
@@ -33,7 +39,7 @@ const UserRoles = () => {
       </div>
       {roles.map((role) => (
         <section key={role.id} class="container">
-          <div class="card rounded my-3 bg-light text-dark">
+          <div class="card rounded my-3 bg-muted text-secondary">
             <div class="card-body">
               <div class="row">
                 <div class="col">
@@ -46,9 +52,15 @@ const UserRoles = () => {
                   <b>Salary:</b> {role.salary}
                 </div>
                 <div class="col">
+                  {/* <button
+                    class="btn_details"
+                    onClick={() => navigate(`/roles/${role.id}`)}
+                  >
+                    View Details
+                  </button> */}
                   <a
                     type="button"
-                    class="btn"
+                    class="btn btn-secondary text-white"
                     onClick={() => navigate(`/roles/${role.id}`)}
                   >
                     View Details
@@ -60,6 +72,7 @@ const UserRoles = () => {
         </section>
       ))}
     </section>
+    
   );
 };
 

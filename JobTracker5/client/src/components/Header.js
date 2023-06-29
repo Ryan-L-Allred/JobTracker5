@@ -16,7 +16,7 @@ export default function Header({ isLoggedIn }) {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div class="bg-light bg-gradient text-light">
+    <div class="bg-white bg-gradient text-light">
       <Navbar color="blue" light expand="md">
         <NavbarBrand tag={RRNavLink} className="app_Name text-dark" to="/">
           Job Tracker

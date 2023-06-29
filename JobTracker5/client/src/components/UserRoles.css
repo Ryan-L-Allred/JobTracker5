@@ -1,7 +1,23 @@
-/* html {
- background-color: bisque;
+html {
+ background-color: rgb(248, 249, 250)
+}
+
+/* body{
+    background-color:rgb(121, 121, 224)
 } */
 
-.btn {
-    background-color: rgb(2, 2, 45);
+
+
+.btn_add {
+    padding: 5px 5px;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color:rgb(153, 157, 237);
+}
+
+.btn_details {
+    padding: 5px 5px;
+    font-size: 17px;
+    border-radius: 15px;
+    background-color:orange;
 }

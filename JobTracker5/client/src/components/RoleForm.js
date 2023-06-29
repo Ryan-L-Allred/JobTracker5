@@ -76,12 +76,13 @@ const RoleForm = ({ getRoles }) => {
   };
 
   return (
-    <form class="container my-3">
+    <section class="bg-light">
+    <form class="container  text-secondary">
       <FormGroup>
         <div class="Title" for="title">
           <b>Title</b>
         </div>
-        <Input
+        <Input 
           type="text"
           name="title"
           id="title"
@@ -249,21 +250,23 @@ const RoleForm = ({ getRoles }) => {
         <div>
           <a 
             type="button" 
-            className="btn btn-primary" 
+            className="btn btn-secondary" 
             onClick={handleSave}>
             Submit
           </a>
-        </div>
-        <div>
           <a
             type="button"
-            className="btn btn-primary my-1"
+            className="btn btn-secondary my-1"
             onClick={() => navigate("/roles")}>
             Cancel
           </a>
+        </div>
+        <div>
+          
           </div>
       </div>
     </form>
+    </section>
   );
 };
 
