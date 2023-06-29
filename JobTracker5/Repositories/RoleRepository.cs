@@ -17,7 +17,7 @@ namespace JobTracker5.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT r.Id, r.Title, r.Company, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
+                        SELECT r.Id, r.Title, r.Company, r.Salary, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
                                el.Name as ExperienceLevelName,
 	                           jt.Name as JobTypeName,
 	                           js.Name as JobSiteName
@@ -37,6 +37,7 @@ namespace JobTracker5.Repositories
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Company = reader.GetString(reader.GetOrdinal("Company")),
+                                Salary = reader.GetString(reader.GetOrdinal("Salary")),
                                 Location = reader.GetString(reader.GetOrdinal("Location")),
                                 Skills = reader.GetString(reader.GetOrdinal("Skills")),
                                 IsRejected = reader.GetString(reader.GetOrdinal("IsRejected")),
@@ -79,7 +80,7 @@ namespace JobTracker5.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                          SELECT r.Id, r.Title, r.Company, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
+                          SELECT r.Id, r.Title, r.Company, r.Salary, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
 	                             el.Name as ExperienceLevelName,
                                  jt.Name as JobTypeName,
 	                             js.Name as JobSiteName
@@ -101,6 +102,7 @@ namespace JobTracker5.Repositories
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Company = reader.GetString(reader.GetOrdinal("Company")),
+                                Salary = reader.GetString(reader.GetOrdinal("Salary")),
                                 Location = reader.GetString(reader.GetOrdinal("Location")),
                                 Skills = reader.GetString(reader.GetOrdinal("Skills")),
                                 IsRejected = reader.GetString(reader.GetOrdinal("IsRejected")),
@@ -141,7 +143,7 @@ namespace JobTracker5.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                          SELECT r.Id, r.Title, r.Company, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
+                          SELECT r.Id, r.Title, r.Company, r.Salary, r.Location, r.Skills, r.IsRejected, r.IsAccepted, r.GotInterview, r.ExperienceLevelId, r.JobTypeId, r.JobSiteId, r.UserProfileId,
 	                             el.Name as ExperienceLevelName,
                                  jt.Name as JobTypeName,
 	                             js.Name as JobSiteName,
@@ -165,6 +167,7 @@ namespace JobTracker5.Repositories
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Company = reader.GetString(reader.GetOrdinal("Company")),
+                                Salary = reader.GetString(reader.GetOrdinal("Salary")),
                                 Location = reader.GetString(reader.GetOrdinal("Location")),
                                 Skills = reader.GetString(reader.GetOrdinal("Skills")),
                                 IsRejected = reader.GetString(reader.GetOrdinal("IsRejected")),
@@ -214,12 +217,13 @@ namespace JobTracker5.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Role (Title, Company, Location, Skills, IsRejected, IsAccepted, GotInterview, ExperienceLevelId, JobTypeId, JobSiteId, UserProfileId)
+                        INSERT INTO Role (Title, Company, Salary, Location, Skills, IsRejected, IsAccepted, GotInterview, ExperienceLevelId, JobTypeId, JobSiteId, UserProfileId)
                         OUTPUT INSERTED.ID
-                        VALUES (@Title, @Company, @Location, @Skills, @IsRejected, @IsAccepted, @GotInterview, @ExperienceLevelId, @JobTypeId, @JobSiteId, @UserProfileId)";
+                        VALUES (@Title, @Company, @Salary, @Location, @Skills, @IsRejected, @IsAccepted, @GotInterview, @ExperienceLevelId, @JobTypeId, @JobSiteId, @UserProfileId)";
 
                     cmd.Parameters.AddWithValue("@Title", role.Title);
                     cmd.Parameters.AddWithValue("@Company", role.Company);
+                    cmd.Parameters.AddWithValue("@Salary", role.Salary);
                     cmd.Parameters.AddWithValue("@Location", role.Location);
                     cmd.Parameters.AddWithValue("@Skills", role.Skills);
                     cmd.Parameters.AddWithValue("@IsRejected", role.IsRejected);
@@ -246,6 +250,7 @@ namespace JobTracker5.Repositories
                         UPDATE Role
                            SET Title = @Title,
                                Company = @Company,
+                               Salary = @Salary,
                                Location = @Location,
                                Skills = @Skills,
                                IsRejected = @IsRejected,
@@ -259,6 +264,7 @@ namespace JobTracker5.Repositories
 
                     cmd.Parameters.AddWithValue("@Title", role.Title);
                     cmd.Parameters.AddWithValue("@Company", role.Company);
+                    cmd.Parameters.AddWithValue("@Salary", role.Salary);
                     cmd.Parameters.AddWithValue("@Location", role.Location);
                     cmd.Parameters.AddWithValue("@Skills", role.Skills);
                     cmd.Parameters.AddWithValue("@IsRejected", role.IsRejected);

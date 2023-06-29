@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getRolesByUserProfileId } from "../modules/roleManager";
-import { Button } from "reactstrap";
+import { Button, Container, Row, Col, Card, CardGroup } from "reactstrap";
+import "./UserRoles.css";
 
 const UserRoles = () => {
   const [roles, setRoles] = useState([]);
@@ -18,9 +19,9 @@ const UserRoles = () => {
   const navigate = useNavigate();
 
   return (
-    <section class="container">
+    <section class="bg-secondary bg-gradient text-white">
       <h2 class="text-center">Roles Applied</h2>
-      <div class="text-center">
+      <div class="text-center ">
         <a
           type="button"
           class="btn btn-primary"
@@ -29,44 +30,32 @@ const UserRoles = () => {
           Add Role
         </a>
       </div>
-      <section class="text-center">
-        <div class="row mb-1">
-          <div class="col">
-            <b>Title</b>
-          </div>
-          <div class="col">
-            <b>Company</b>
-          </div>
-          <div class="col">
-            <b>Location</b>
-          </div>
-          <div class="col">
-            <b>Details</b>
-          </div>
-        </div>
-      </section>
       {roles.map((role) => (
-        <section key={role.id} class="container text-center">
-          
-            <div class="row">
-              <div class="card rounded mb-2 shadow-sm">
-                <div class="card-body">
-                  <div>{role.title}</div>
-                  <div>{role.company}</div>
-                  <div>{role.location}</div>
-                  <div class="col text-center">
-                    <a
-                      type="button"
-                      class="btn btn-primary"
-                      onClick={() => navigate(`/roles/${role.id}`)}
-                    >
-                      View Details
-                    </a>
-                  </div>
+        <section key={role.id} class="container">
+          <div class="card rounded my-3 bg-dark bg-gradient text-light">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <b>Title:</b> {role.title}
+                </div>
+                <div class="col b">
+                  <b>Company:</b> {role.company}
+                </div>
+                <div class="col">
+                  <b>Salary:</b> {role.salary}
+                </div>
+                <div class="col">
+                  <a
+                    type="button"
+                    class="btn btn-secondary"
+                    onClick={() => navigate(`/roles/${role.id}`)}
+                  >
+                    View Details
+                  </a>
                 </div>
               </div>
             </div>
-          
+          </div>
         </section>
       ))}
     </section>

@@ -14,6 +14,7 @@ const RoleEdit = () => {
   const emptyRole = {
     title: "",
     company: "",
+    salary: "",
     location: "",
     skills: "",
     isRejected: "",
@@ -67,6 +68,7 @@ const RoleEdit = () => {
       id: roleSelect.id,
       title: roleSelect.title,
       company: roleSelect.company,
+      salary: roleSelect.salary,
       location: roleSelect.location,
       skills: roleSelect.skills,
       isRejected: roleSelect.isRejected,
@@ -74,7 +76,7 @@ const RoleEdit = () => {
       gotInterview: roleSelect.gotInterview,
       experienceLevelId: roleSelect.experienceLevelId,
       jobTypeId: roleSelect.jobTypeId,
-      jobSiteId: roleSelect.jobSiteId,
+      jobSiteId: roleSelect.jobSiteId
     };
 
     return editRole(roleSelect.id, roleToSendToAPI).then(() => {
@@ -107,6 +109,19 @@ const RoleEdit = () => {
           id="company"
           placeholder="company"
           value={roleSelect.company}
+          onChange={handleInputChange}
+        />
+      </FormGroup>
+      <FormGroup>
+        <div class="salary" for="salary">
+         Salary
+        </div>
+        <Input
+          type="text"
+          name="salary"
+          id="salary"
+          placeholder="salary"
+          value={roleSelect.salary}
           onChange={handleInputChange}
         />
       </FormGroup>
@@ -199,23 +214,23 @@ const RoleEdit = () => {
           </div>
           <div for="jobType" class="col">
             <b>Job Type</b>
-            {jobTypes.map((jobType) => {
-              return (
-                <div key={jobType.id} className="radio">
-                  <input
-                    type="radio"
-                    value={jobType.id}
-                    checked={roleSelect.jobTypeId === jobType.id}
-                    onChange={(evt) => {
-                      const copy = { ...roleSelect };
-                      copy.jobTypeId = parseInt(evt.target.value);
-                      updateRole(copy);
-                    }}
-                  />
-                  {jobType.name}
-                </div>
-              );
-            })}
+          
+          {jobTypes.map((jobType) => {
+            return (
+              <div key={jobType.id} className="radio">
+                <input
+                type="radio"
+                value={jobType.id}
+                checked={roleSelect.jobTypeId === jobType.id}
+                onChange={(evt) => {
+                  const copy = { ...roleSelect }
+                  copy.jobTypeId = parseInt(evt.target.value)
+                  updateRole(copy)
+                }}/>
+                {jobType.name}
+              </div>
+            )
+          })}
           </div>
           <div for="jobSite" class="col">
             <b>Job Site</b>

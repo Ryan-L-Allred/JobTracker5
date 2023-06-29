@@ -43,6 +43,7 @@ CREATE TABLE [Role] (
   [Title] nvarchar(255) NOT NULL,
   --[CompanyId] int NOT NULL,
   [Company] nvarchar(255) NOT NULL,
+  [Salary] nvarchar(255) NOT NULL,
   [Location] nvarchar(255) NOT NULL,
   [Skills] nvarchar(255),
   [IsRejected] nvarchar(255) NOT NULL,
