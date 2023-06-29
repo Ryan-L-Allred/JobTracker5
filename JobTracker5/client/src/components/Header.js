@@ -16,9 +16,9 @@ export default function Header({ isLoggedIn }) {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div class="bg-dark text-light">
+    <div class="bg-light bg-gradient text-light">
       <Navbar color="blue" light expand="md">
-        <NavbarBrand tag={RRNavLink} className="app_Name text-light" to="/">
+        <NavbarBrand tag={RRNavLink} className="app_Name text-dark" to="/">
           Job Tracker
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -27,7 +27,7 @@ export default function Header({ isLoggedIn }) {
             {/* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn && (
               <NavbarBrand>
-                <NavLink className="Home text-light" tag={RRNavLink} to="/">
+                <NavLink className="Home text-dark" tag={RRNavLink} to="/">
                   Home
                 </NavLink>
               </NavbarBrand>
@@ -37,7 +37,7 @@ export default function Header({ isLoggedIn }) {
             {/* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn && (
               <NavbarBrand>
-                <NavLink className="text-light" tag={RRNavLink} to="/roles">
+                <NavLink className="text-dark" tag={RRNavLink} to="/roles">
                   Roles
                 </NavLink>
               </NavbarBrand>
@@ -50,7 +50,7 @@ export default function Header({ isLoggedIn }) {
                   <NavLink
                     onClick={logout}
                     tag={RRNavLink}
-                    className="login text-light"
+                    className="login text-dark"
                     to="/login"
                   >
                     Logout

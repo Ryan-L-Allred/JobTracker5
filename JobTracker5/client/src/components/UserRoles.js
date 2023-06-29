@@ -19,12 +19,13 @@ const UserRoles = () => {
   const navigate = useNavigate();
 
   return (
-    <section class="bg-secondary bg-gradient text-white">
+    
+    <section >
       <h2 class="text-center">Roles Applied</h2>
       <div class="text-center ">
         <a
           type="button"
-          class="btn btn-primary"
+          class="btn btn-dark"
           onClick={() => navigate("/roles/add")}
         >
           Add Role
@@ -32,7 +33,7 @@ const UserRoles = () => {
       </div>
       {roles.map((role) => (
         <section key={role.id} class="container">
-          <div class="card rounded my-3 bg-dark bg-gradient text-light">
+          <div class="card rounded my-3 bg-light text-dark">
             <div class="card-body">
               <div class="row">
                 <div class="col">
@@ -47,7 +48,7 @@ const UserRoles = () => {
                 <div class="col">
                   <a
                     type="button"
-                    class="btn btn-secondary"
+                    class="btn"
                     onClick={() => navigate(`/roles/${role.id}`)}
                   >
                     View Details

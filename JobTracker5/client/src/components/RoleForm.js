@@ -76,7 +76,7 @@ const RoleForm = ({ getRoles }) => {
   };
 
   return (
-    <form class="container">
+    <form class="container my-3">
       <FormGroup>
         <div class="Title" for="title">
           <b>Title</b>
@@ -182,7 +182,7 @@ const RoleForm = ({ getRoles }) => {
         />
       </FormGroup>
       <fieldset>
-        <div class="row">
+        <div class="row my-2">
           <div for="expLevel" class="col">
             <b>Experience Level</b>
             {expLevels.map((expLevel) => {
