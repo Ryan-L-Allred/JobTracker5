@@ -25,7 +25,7 @@ const UserRoles = () => {
       <div class="text-center ">
         <a
           type="button"
-          class="btn btn-dark"
+          class="btn"
           onClick={() => navigate("/roles/add")}
         >
           Add Role
@@ -39,7 +39,7 @@ const UserRoles = () => {
                 <div class="col">
                   <b>Title:</b> {role.title}
                 </div>
-                <div class="col b">
+                <div class="col">
                   <b>Company:</b> {role.company}
                 </div>
                 <div class="col">
