@@ -80,7 +80,7 @@ const RoleEdit = () => {
     };
 
     return editRole(roleSelect.id, roleToSendToAPI).then(() => {
-      navigate("/roles");
+      navigate(`/roles/${roleSelect.id}`);
     });
   };
 
